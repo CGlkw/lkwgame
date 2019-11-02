@@ -83,11 +83,12 @@ export default class Main {
       ctx.font = "18px bold 黑体";
       ctx.textAlign = "right";
       ctx.fillText('最高分：', screenWidth / 10 * 8 , screenHeight / 7 + 10);
-      ctx.textAlign = "left";
-      ctx.fillStyle = "#ff0";
-      ctx.fillText(dataBus.palyerInfo.score, screenWidth / 10 * 8, screenHeight / 7 + 10);
+      if (dataBus.palyerInfo.score){
+        ctx.textAlign = "left";
+        ctx.fillStyle = "#ff0";
+        ctx.fillText(dataBus.palyerInfo.score, screenWidth / 10 * 8, screenHeight / 7 + 10);
+      }
     }
-    
   }
 
   stop(){
