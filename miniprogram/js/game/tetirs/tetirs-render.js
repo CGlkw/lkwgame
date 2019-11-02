@@ -1,10 +1,11 @@
 import TetirsBox from "./tetirs-box.js";
 import tetirsData from "./tetirs-data.js";
-
+import DataBus from '../../dataBus.js'
 
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
 const box = 23;
+const dataBus = new DataBus();
 export default class TetirsRender{
   constructor(ctx){
     this.ctx = ctx;
@@ -71,8 +72,14 @@ export default class TetirsRender{
   run(){
     if (this.tetirsBox.isRunning){
       this.tetirsBox.run(function () {
-        //die
+        //die 
         this.isRun = false;
+        if (dataBus.palyerInfo){
+          if (dataBus.palyerInfo.score < this.tetirsBox.score){
+            dataBus.palyerInfo.score = this.tetirsBox.score;
+            dataBus.updateDbPlayerScore(this.tetirsBox.score)
+          }
+        }
       }.bind(this), function () {
 
       });

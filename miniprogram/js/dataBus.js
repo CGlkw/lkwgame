@@ -17,15 +17,32 @@ export default class DataBus{
 
     instance = this
     this.login();
-    this.getDbPlayerInfo('')
+    
   }
 
   getDbPlayerInfo(openid){
     let _this = this;
     playerTable.where({
-      _openid: _.eq('123456')
+      _openid: openid
     }).get({
       success:function(res){
+        console.log(res);
+        if(res.data.length < 1){
+          _this.addDbUserInfo();
+        }else{
+          _this.palyerInfo.score = res.data[0].score || 0
+        }
+      }
+    })
+  }
+
+  updateDbPlayerScore(score){
+    let _this = this;
+    playerTable.doc(_this.palyerInfo.id).update({
+      data:{
+        score : score
+      },
+      success:res =>{
         console.log(res)
       }
     })
@@ -37,6 +54,7 @@ export default class DataBus{
       data: _this.palyerInfo,
       success: function (res) {
         console.log(res)
+        _this.palyerInfo.id = res.data._id;
       }
     })
   }
@@ -58,7 +76,7 @@ export default class DataBus{
       name: 'getOpenId',
       complete: res => {
         that.palyerInfo.openid = res.result.openid
-        //console.log(that.getDbPlayerInfo('123456'))
+        that.getDbPlayerInfo(that.palyerInfo.openid)
       }
     })
   }

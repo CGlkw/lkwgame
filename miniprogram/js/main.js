@@ -80,6 +80,12 @@ export default class Main {
       ctx.textBaseline = "middle";
       // 绘制文字（参数：要写的字，x坐标，y坐标）
       ctx.fillText(dataBus.palyerInfo.nickName, screenWidth / 10 + 30, screenHeight / 7 + 10);
+      ctx.font = "18px bold 黑体";
+      ctx.textAlign = "right";
+      ctx.fillText('最高分：', screenWidth / 10 * 8 , screenHeight / 7 + 10);
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#ff0";
+      ctx.fillText(dataBus.palyerInfo.score, screenWidth / 10 * 8, screenHeight / 7 + 10);
     }
     
   }
