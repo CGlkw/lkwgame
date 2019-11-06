@@ -4,7 +4,7 @@ import DataBus from '../../dataBus.js'
 
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
-const box = 23;
+const box = screenHeight * 55/100 / 20;
 const dataBus = new DataBus();
 export default class TetirsRender{
   constructor(ctx){
@@ -15,7 +15,7 @@ export default class TetirsRender{
     this.marginLeft = 10
     
     this.x = 0 + this.marginLeft;
-    this.y = screenHeight - 62 * 2 - this.height - this.marginBot;
+    this.y = screenHeight - screenHeight * 1 / 5 - this.height - this.marginBot;
     //首页
     this.mianX = screenWidth / 6
     this.mainY = this.y + 50

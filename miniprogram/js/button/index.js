@@ -13,10 +13,10 @@ export default class Buttons {
   constructor(ctx) {
     this.ctx = ctx;
     this.centerX = screenWidth / 2;
-    this.centerY = screenHeight - 62;
-    this.r = 25;
+    this.centerY = screenHeight - screenHeight / 10;
+    this.r = screenWidth * 30 / 375;
     this.width = screenWidth;
-    this.height = 62 * 2;
+    this.height = screenHeight / 5;
     this.x = 0;
     this.y = screenHeight - this.height;
     this.buttons = [];
@@ -25,10 +25,12 @@ export default class Buttons {
   }
 
   init() {
-    let upButton = new UpButton( this.centerX, this.centerY, this.r);
-    let downButton = new DownButton( this.centerX, this.centerY, this.r);
-    let rightButton = new RightButton( this.centerX, this.centerY, this.r);
-    let leftButton = new LeftButton( this.centerX, this.centerY, this.r);
+    let c_x = this.centerX - screenWidth * 100 / 375;
+    let c_y = this.centerY 
+    let upButton = new UpButton(c_x, c_y, this.r);
+    let downButton = new DownButton(c_x, c_y, this.r);
+    let rightButton = new RightButton(c_x, c_y, this.r);
+    let leftButton = new LeftButton(c_x, c_y, this.r);
     let startButton = new StartButton(this.centerX, this.centerY, this.r);
     let endButton = new EndButton(this.centerX, this.centerY, this.r);
     this.buttons.push(upButton);

@@ -13,10 +13,10 @@ export default class StartButton extends Button {
 
   print(ctx) {
     super.print(ctx);
-    ctx.moveTo(this.x - 5, this.y + 12);
-    ctx.lineTo(this.x + 10, this.y)
-    ctx.lineTo(this.x - 5, this.y - 12)
-    ctx.lineTo(this.x - 5, this.y + 12)
+    ctx.moveTo(this.x - this.r / 4, this.y + 12 / 20 * this.r);
+    ctx.lineTo(this.x + this.r / 2, this.y)
+    ctx.lineTo(this.x - this.r / 4, this.y - 12 / 20 * this.r)
+    ctx.lineTo(this.x - this.r / 4, this.y + 12 / 20 * this.r)
     ctx.stroke();
   }
 }

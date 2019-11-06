@@ -13,10 +13,10 @@ export default class EndButton extends Button {
 
   print(ctx) {
     super.print(ctx);
-    ctx.moveTo(this.x - 10, this.y - 10);
-    ctx.lineTo(this.x + 10, this.y + 10)
-    ctx.moveTo(this.x + 10, this.y - 10)
-    ctx.lineTo(this.x - 10 , this.y + 10)
+    ctx.moveTo(this.x - this.r / 2, this.y - this.r / 2);
+    ctx.lineTo(this.x + this.r / 2, this.y + this.r / 2)
+    ctx.moveTo(this.x + this.r / 2, this.y - this.r / 2)
+    ctx.lineTo(this.x - this.r / 2, this.y + this.r / 2)
     ctx.stroke();
   }
 }

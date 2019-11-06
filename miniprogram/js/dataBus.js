@@ -6,7 +6,6 @@ wx.cloud.init({
 })
 const db = wx.cloud.database()
 const playerTable = db.collection('player');
-const _ = db.command
 /**
  * 全局状态管理器
  */
@@ -30,17 +29,22 @@ export default class DataBus{
         if(res.data.length < 1){
           _this.addDbUserInfo();
         }else{
-          _this.palyerInfo.score = res.data[0].score || 0
+          _this.palyerInfo.id = res.data[0]._id;
+          _this.palyerInfo.score = res.data[0].score === 0 ? '0' : res.data[0].score
         }
       }
     })
   }
 
-  updateDbPlayerScore(score){
+  updateDbPlayerScore(_score){
     let _this = this;
+    if (!_this.palyerInfo.id){
+      this.getOpenid();
+    }
+    console.log(_this.palyerInfo.id)
     playerTable.doc(_this.palyerInfo.id).update({
       data:{
-        score : score
+        score : _score
       },
       success:res =>{
         console.log(res)
@@ -54,7 +58,7 @@ export default class DataBus{
       data: _this.palyerInfo,
       success: function (res) {
         console.log(res)
-        _this.palyerInfo.id = res.data._id;
+        _this.palyerInfo.id = res.data[0]._id;
       }
     })
   }
